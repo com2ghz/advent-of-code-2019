@@ -36,11 +36,11 @@ def calculate_step_count(intersecting, wire_walk):
 
 def calculate_manhattan(intersecting):
     distance_map = {}
-
     for point in intersecting:
         distance = abs(point.x) + abs(point.y)
         distance_map.update({point: distance})
     return distance_map
+
 
 def calculate_intersecting(wire_walk1, wire_walk2):
     intersecting = []
@@ -86,6 +86,9 @@ class Point:
             return NotImplemented
 
         return self.x == other.x and self.y == other.y
+
+    def __hash__(self):
+        return hash((self.x, self.y))
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ def main():
         wire_walk1 = walkwire(wire1)
         wire_walk2 = walkwire(wire2)
 
-        intersecting = calculate_intersecting(wire_walk1, wire_walk2)
+        intersecting = intersect(wire_walk1, wire_walk2)
 
         manhattan_map = calculate_manhattan(intersecting)
         shortest_distance = min(manhattan_map.values())
@@ -42,14 +42,8 @@ def calculate_manhattan(intersecting):
     return distance_map
 
 
-def calculate_intersecting(wire_walk1, wire_walk2):
-    intersecting = []
-    for wireone in wire_walk1:
-        for wiretwo in wire_walk2:
-            if wireone.x == wiretwo.x and wireone.y == wiretwo.y:
-                print("Intersecting", wireone.x, wiretwo.y)
-                intersecting.append(wireone)
-    return intersecting
+def intersect(lst1, lst2):
+    return list(set(lst1) & set(lst2))
 
 
 def walkwire(actions):
